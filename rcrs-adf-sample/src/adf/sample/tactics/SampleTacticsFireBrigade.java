@@ -17,12 +17,16 @@ import adf.component.communication.CommunicationMessage;
 import adf.component.extaction.ExtAction;
 import adf.component.module.complex.Search;
 import adf.sample.tactics.utils.MessageTool;
+import io.grpc.Server;
+import io.grpc.ServerBuilder;
 import rescuecore2.standard.entities.*;
 import rescuecore2.worldmodel.EntityID;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
+import PyRLAgent.PyRLAgent;
 import adf.agent.action.fire.ActionExtinguish;
 import adf.agent.action.fire.ActionRefill;
 import adf.agent.communication.standard.bundle.centralized.CommandFire;
@@ -98,6 +102,19 @@ public class SampleTacticsFireBrigade extends TacticsFireBrigade
         registerModule(this.actionExtMove);
         registerModule(this.commandExecutorFire);
         registerModule(this.commandExecutorScout);
+        
+        Server server = ServerBuilder.forPort(3400).addService(new PyRLAgent()).build();
+		try {
+			server.start();
+			System.out.println("Server started at " + server.getPort());	
+			try {
+				server.awaitTermination();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
     }
 
     @Override
