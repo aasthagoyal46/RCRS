@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "PyRLServer";
+option java_outer_classname = "PyRLProto";
+
+package PyRLServer;
+
+service PyRLServer {
+  rpc getRewards (Empty) returns (Reward) {}
+}
+
+message Empty {
+}
+
+message Reward {
+	double reward = 1;
+}

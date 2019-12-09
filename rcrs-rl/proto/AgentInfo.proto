@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option java_package = "PyRLAgent";
+option java_outer_classname = "PyRLProto";
+
+package PyRLAgent;
+
+service PyRLAgent {
+  rpc getAgentInfo (ActionInfo) returns (AgentInfo) {}
+}
+
+message AgentInfo {
+	repeated Agent agents = 1; 
+}
+
+message ActionInfo {
+	repeated Action actions = 1; 
+}
+
+message Agent {
+  int32 agent_id = 1;
+  double x = 2;
+  double y = 3; 
+  int32 water = 4;
+  int32 hp = 5; 
+}
+
+message Action {
+  int32 agentId = 1;
+  int32 buildingId = 2; 
+}
