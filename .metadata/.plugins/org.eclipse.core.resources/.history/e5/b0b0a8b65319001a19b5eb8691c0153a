@@ -1,0 +1,19 @@
+package PyRLAgent;
+
+import java.io.IOException;
+
+import io.grpc.Server;
+import io.grpc.ServerBuilder;
+
+public class PyRLAgentTest {
+	public static void main(String[] args) throws InterruptedException {
+		Server server = ServerBuilder.forPort(3400).addService(new PyRLAgent()).build();
+		try {
+			server.start();
+			System.out.println("Server started at " + server.getPort());	
+			server.awaitTermination();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
+	}
+}
