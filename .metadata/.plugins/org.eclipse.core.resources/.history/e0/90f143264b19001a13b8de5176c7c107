@@ -1,7 +1,0 @@
-package PyRLAgent;
-
-import PyRLAgent.PyRLAgentGrpc.PyRLAgentImplBase;
-
-public class PyRLAgent extends PyRLAgentImplBase {
-	
-}
