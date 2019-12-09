@@ -107,11 +107,6 @@ public class SampleTacticsFireBrigade extends TacticsFireBrigade
 		try {
 			server.start();
 			System.out.println("Server started at " + server.getPort());	
-			try {
-				server.awaitTermination();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
